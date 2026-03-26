@@ -108,16 +108,11 @@
     </details>
     </header>
 
-    <form id="signupForm" novalidate>
+    <form onsubmit="login(event)" novalidate>
 
         <label>
             Username
             <input type="text" id="username" placeholder="Username" required>
-        </label>
-
-        <label>
-            Email
-            <input type="email" id="email" placeholder="Email" required>
         </label>
 
         <label>
@@ -126,10 +121,40 @@
         </label>
 
         <button type="submit" class="btn">Login</button>
+        <div id="result"></div>
 
     </form>
 
 </div>
+
+<script>
+    let correctUsername = "Sukunas#1fan";
+    let correctPassword = "123456";
+
+    function login(event) {
+        event.preventDefault();
+
+        let user = document.getElementById("username").value;
+        let pass = document.getElementById("password").value;
+
+        if (user === "" || pass === "") {
+            alert("Please fill in all fields!");
+            document.getElementById("result").innerHTML = "⚠️ Missing input";
+
+        } else if (user === correctUsername && pass === correctPassword) {
+            document.getElementById("result").innerHTML = "✅ Access Granted";
+            alert("Welcome, " + user + "!");
+
+        } else {
+            document.getElementById("result").innerHTML = "❌ Access Denied";
+            alert("Invalid username or password!");
+        }
+    }
+
+    function toggleMessage(){
+        console.log("Instructions toggled");
+    }
+</script>
 
 </body>
 </html>
